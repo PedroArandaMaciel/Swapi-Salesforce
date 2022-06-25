@@ -1,0 +1,66 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ContactController">
+    <aura:attribute name="Name" type="String" default="" />
+    <aura:attribute name="Genero" type="String" default="" />
+    <aura:attribute name="ColorCabello" type="String" />
+    <aura:attribute name="ColorPiel" type="String" default="" />
+    <aura:attribute name="ColorOjos" type="String" default="" />
+    <aura:attribute name="Altura" type="String" default="" />
+    <aura:attribute name="Planeta" type="String" />
+    <aura:attribute name="URL" type="String" />
+    <aura:attribute name="NumeroPersonaje" type="Integer" default="" />
+    <aura:attribute name="numeroPersonajeBuscado" type="String" default="" />
+    <aura:attribute name="fetchedFromApi" type="boolean" default="false" />
+    <aura:attribute name="NameBoolean" type="boolean" default="true" />
+    <aura:attribute name="GeneroBoolean" type="boolean" default="true" />
+    <aura:attribute name="ColorCabelloBoolean" type="boolean" default="true" />
+    <aura:attribute name="ColorPielBoolean" type="boolean" default="true" />
+    <aura:attribute name="ColorOjosBolean" type="boolean" default="true" />
+    <aura:attribute name="AlturaBoolean" type="boolean" default="true" />
+    <aura:attribute name="PlanetaBoolean" type="boolean" default="true" />
+    <aura:attribute name="URLBoolean" type="boolean" default="true" />
+    <lightning:card iconName="standard:contact"
+        title="Añade tu proximo personaje de Star Wars a la lista de contactos!">
+        <lightning:layoutItem size="4" padding="around-small">
+            <lightning:input label="Código de personaje" value="{!v.numeroPersonajeBuscado}" aura:id="codigoId"
+                type="number" class="" placeholder="Escribe un numero para buscar un personaje..." />
+            <lightning:button label="Buscar personaje" onclick="{!c.fetchCharacter}" variant="brand"
+                class="slds-m-top_medium" />
+        </lightning:layoutItem>
+        <div class="slds-p-around_medium">
+            <div class="slds-col slds-size_3-of-12 slds-var-m-top_x-small">
+                <lightning:input name="Name" label="Nombre" value="{!v.Name}" readonly="{!v.NameBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-left_xxx-small slds-m-top_x-small">
+                <lightning:input name="Genero" label="Genero" value="{!v.Genero}" readonly="{!v.GeneroBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-top_x-small">
+                <lightning:input name="ColorCabello" label="Color de Cabello" value="{!v.ColorCabello}"
+                    readonly="{!v.ColorCabelloBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-left_xxx-small slds-m-top_x-small">
+                <lightning:input name="ColorPiel" label="Color de Piel" value="{!v.ColorPiel}"
+                    readonly="{!v.ColorPielBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-top_x-small slds-m-top_x-small">
+                <lightning:input name="ColorOjos" label="Color de Ojos" value="{!v.ColorOjos}"
+                    readonly="{!v.ColorOjosBolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-left_xxx-small slds-m-top_x-small">
+                <lightning:input name="Altura" label="Altura" type="number" value="{!v.Altura}"
+                    readonly="{!v.AlturaBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-top_x-small">
+                <lightning:input name="Planeta" label="Planeta" value="{!v.Planeta}" readonly="{!v.PlanetaBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-left_xxx-small slds-m-top_x-small">
+                <lightning:input name="URL" label="URL" value="{!v.URL}" readonly="{!v.URLBoolean}" />
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-m-top_x-small">
+                <lightning:input name="NumeroPersonaje" label="Numero de Personaje" type="number"
+                    value="{!v.NumeroPersonaje}" readonly="true" />
+            </div>
+        </div>
+        <lightning:button label="Guardar Contacto" onclick="{!c.handleCreateContact}" variant="brand"
+            class="slds-m-horizontal_medium" />
+    </lightning:card>
+</aura:component>
